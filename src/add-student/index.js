@@ -44,8 +44,9 @@ const github = require('@actions/github');
         "Email": values[2],
         "Github username": values[3]
       })
-      const updatedContent = Buffer.from(JSON.stringify(file, null, 2)).toString('base64');
-      console.log(updatedContent, 'updatedContent', file, 'file', content, 'content', decodedContent, 'decodedContent')      
+      let finalFile = JSON.stringify(file)
+      const updatedContent = Buffer.from(finalFile).toString('base64');
+      console.log(updatedContent, 'updatedContent', file, 'file', content, 'content', decodedContent, 'decodedContent', context.sha, 'context.sha')      
       // await client.repos.createOrUpdateFileContents({
       //   owner: context.repo.owner,
       //   repo: context.repo.repo,
