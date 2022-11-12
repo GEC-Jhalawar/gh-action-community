@@ -36,6 +36,11 @@ const github = require('@actions/github');
         repo: context.repo.repo,
         path: filePath,
       });
+      const { data: { sha } } = await client.repos.getContent({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        path: filePath,
+      });
       const decodedContent = Buffer.from(content, 'base64').toString();
       let file = JSON.parse(decodedContent);
       file[batch].push({
@@ -52,7 +57,7 @@ const github = require('@actions/github');
         path: filePath,
         message: 'Update file',
         content: updatedContent,
-        sha: context.sha,
+        sha: sha,
       });
     }
   } catch (error) {
