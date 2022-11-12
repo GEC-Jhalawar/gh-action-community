@@ -45,14 +45,15 @@ const github = require('@actions/github');
         "Github username": values[3]
       })
       const updatedContent = Buffer.from(JSON.stringify(file, null, 2)).toString('base64');
-      await client.repos.createOrUpdateFileContents({
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        path: filePath,
-        message: 'Update file',
-        content: updatedContent,
-        sha: context.sha,
-      });
+      console.log(updatedContent, 'updatedContent', file, 'file', content, 'content', decodedContent, 'decodedContent')      
+      // await client.repos.createOrUpdateFileContents({
+      //   owner: context.repo.owner,
+      //   repo: context.repo.repo,
+      //   path: filePath,
+      //   message: 'Update file',
+      //   content: updatedContent,
+      //   sha: context.sha,
+      // });
     }
   } catch (error) {
     core.setFailed(error.message);
