@@ -40,7 +40,7 @@ const github = require('@actions/github');
       let file = JSON.parse(decodedContent);
 
       // const encodedContent = Buffer.from(updatedContent3).toString('base64');
-      console.log('Issue Body, ', values, 'decodedContent', file);
+      console.log('Issue Body, ', values, 'decodedContent', file.batch);
     }
   } catch (error) {
     core.setFailed(error.message);
