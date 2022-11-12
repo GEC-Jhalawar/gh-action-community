@@ -38,9 +38,21 @@ const github = require('@actions/github');
       });
       const decodedContent = Buffer.from(content, 'base64').toString();
       let file = JSON.parse(decodedContent);
-
-      // const encodedContent = Buffer.from(updatedContent3).toString('base64');
-      console.log('Issue Body, ', values, 'decodedContent', file.batch);
+      file[batch].push({
+        "Name": values[0],
+        "Roll": values[1],
+        "Email": values[2],
+        "Github username": values[3]
+      })
+      const updatedContent = Buffer.from(JSON.stringify(file, null, 2)).toString('base64');
+      await client.repos.createOrUpdateFileContents({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        path: filePath,
+        message: 'Update file',
+        content: updatedContent,
+        sha: context.sha,
+      });
     }
   } catch (error) {
     core.setFailed(error.message);
