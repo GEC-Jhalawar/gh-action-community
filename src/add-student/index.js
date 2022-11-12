@@ -6,7 +6,6 @@ const github = require('@actions/github');
     const githubToken = core.getInput('github-token', { required: true });
     const filePath = core.getInput('file-path');
     const fileContent = core.getInput('file-content');
-    var batch;
     // add a comment to the issue or pull request
     // @TODO: with a markdown sheild / badge
     const client = github.getOctokit(githubToken);
@@ -19,6 +18,7 @@ const github = require('@actions/github');
     if (!!context.payload.issue) {
       const text = context.payload.issue.body
       const arr = JSON.parse(fileContent)
+      var batch;
       const values = arr.map((key) => {
         const regex = new RegExp(`### ${key}\n\n(.*)`)
         const match = text.match(regex)
@@ -40,7 +40,7 @@ const github = require('@actions/github');
       let file = JSON.parse(decodedContent);
 
       // const encodedContent = Buffer.from(updatedContent3).toString('base64');
-      console.log('Issue Body, ', values, 'decodedContent', file.batch);
+      console.log('Issue Body, ', values, 'decodedContent', file, batch);
     }
   } catch (error) {
     core.setFailed(error.message);
