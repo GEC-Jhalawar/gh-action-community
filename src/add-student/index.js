@@ -18,15 +18,15 @@ const github = require('@actions/github');
     // }
     console.log(context.payload);
     if (!!context.payload.issue) {
-      // await client.issues.createComment({
-      //   owner: context.issue.owner,
-      //   repo: context.issue.repo,
-      //   issue_number: context.issue.number,
-      //   body: issueMessage + footerTags
-      // });
-      console.log('Issue was opened file details', fileContent, filePath);
+      const text = context.payload.issue.body
+      const arr = JSON.parse(fileContent)
+      const values = arr.map((key) => {
+        const regex = new RegExp(`### ${key}\n\n(.*)`)
+        const match = text.match(regex)
+        return match[1]
+    })
 
-      console.log('Issue Body, ', context.payload.issue.body);
+      console.log('Issue Body, ', values);
     }
   } catch (error) {
     core.setFailed(error.message);
