@@ -24,6 +24,8 @@ const github = require('@actions/github');
       //   issue_number: context.issue.number,
       //   body: issueMessage + footerTags
       // });
+      console.log('Issue was opened file details', fileContent, filePath);
+
       console.log('Issue Body, ', context.payload.issue.body);
     }
   } catch (error) {
