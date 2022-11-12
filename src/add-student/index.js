@@ -43,6 +43,9 @@ const github = require('@actions/github');
       });
       const decodedContent = Buffer.from(content, 'base64').toString();
       let file = JSON.parse(decodedContent);
+      if (file[batch] === undefined) {
+        file[batch] = []
+      }
       file[batch].push({
         "Name": values[0],
         "Roll": values[1],
