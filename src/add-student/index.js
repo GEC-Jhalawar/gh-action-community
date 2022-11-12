@@ -6,6 +6,7 @@ const github = require('@actions/github');
     const githubToken = core.getInput('github-token', { required: true });
     const filePath = core.getInput('file-path');
     const fileContent = core.getInput('file-content');
+    const lable = core.getInput('lable');
 
     // add a comment to the issue or pull request
     // @TODO: with a markdown sheild / badge
@@ -17,7 +18,7 @@ const github = require('@actions/github');
       return;
     }
 
-    if (!!context.payload.issue) {
+    if (!!context.payload.issue && context.payload.issue.labels.includes(lable)) {
       // await client.issues.createComment({
       //   owner: context.issue.owner,
       //   repo: context.issue.repo,

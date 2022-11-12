@@ -7,6 +7,10 @@ inputs:
   file-path:
     description: 'Path of the file to update'
     required: true
+  lable:
+    description: 'lable which is used to update the file'
+    required: true
+    default: 'invite me to the organisation'
   file-content:
     description: 'Keys of JSON file to update'
     required: true
