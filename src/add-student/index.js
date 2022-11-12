@@ -16,7 +16,6 @@ const github = require('@actions/github');
     //   console.log('No issue / pull request was opened, skipping');
     //   return;
     // }
-    console.log(context.payload);
     if (!!context.payload.issue) {
       const text = context.payload.issue.body
       const arr = JSON.parse(fileContent)
@@ -25,8 +24,15 @@ const github = require('@actions/github');
         const match = text.match(regex)
         return match[1]
     })
-
-      console.log('Issue Body, ', values);
+      // edit client files at the given path
+      const { data: { content } } = await client.repos.getContent({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        path: filePath,
+      });
+      const decodedContent = Buffer.from(content, 'base64').toString();
+      // const encodedContent = Buffer.from(updatedContent3).toString('base64');
+      console.log('Issue Body, ', values, 'decodedContent', decodedContent);
     }
   } catch (error) {
     core.setFailed(error.message);
