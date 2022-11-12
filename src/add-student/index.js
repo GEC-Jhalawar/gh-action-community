@@ -12,11 +12,11 @@ const github = require('@actions/github');
     const client = github.getOctokit(githubToken);
     const context = github.context;
 
-    if (context.payload.action !== 'opened') {
-      console.log('No issue / pull request was opened, skipping');
-      return;
-    }
-
+    // if (context.payload.action !== 'opened') {
+    //   console.log('No issue / pull request was opened, skipping');
+    //   return;
+    // }
+    console.log(context.payload);
     if (!!context.payload.issue) {
       // await client.issues.createComment({
       //   owner: context.issue.owner,
