@@ -1,0 +1,16 @@
+name: 'Update Files'
+description: 'Update Json Files Based on Issue Input'
+inputs:
+  github-token:
+    description: 'GitHub token for repo'
+    required: true
+  file-path:
+    description: 'Path of the file to update'
+    required: true
+  file-content:
+    description: 'Keys of JSON file to update'
+    required: true
+    default: ['Name', 'Roll', 'Email', 'Github username']
+runs:
+  using: 'node16'
+  main: 'index.js'
