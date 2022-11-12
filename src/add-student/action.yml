@@ -10,7 +10,7 @@ inputs:
   file-content:
     description: 'Keys of JSON file to update'
     required: true
-    default: ['Name', 'Roll', 'Email', 'Github username']
+    default: '['Name', 'Roll', 'Email', 'Github username']'
 runs:
   using: 'node16'
   main: 'index.js'
