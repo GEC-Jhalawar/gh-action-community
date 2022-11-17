@@ -62,7 +62,7 @@ const github = require('@actions/github');
     //     content: updatedContent,
     //     sha: sha,
     //   });
-    }
+    // }
   } catch (error) {
     core.setFailed(error.message);
   }
