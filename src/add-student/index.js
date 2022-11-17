@@ -10,7 +10,7 @@ const github = require('@actions/github');
     // @TODO: with a markdown sheild / badge
     const client = github.getOctokit(githubToken);
     const context = github.context;
-    console.log(context.actor, context);
+    console.log(context.actor, context.labels);
     // if (context.payload.action !== 'closed') {
     //   console.log('No issue / pull request was opened, skipping');
     //   return;
